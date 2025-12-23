@@ -1,0 +1,13 @@
+/temp
+/.vscode
+/results
+.env
+.excalidraw
+*.zip
+*.pt
+*.pth
+*.model
+*.vocab
+*.pkl
+*.faiss
+양식모음.ipynb
