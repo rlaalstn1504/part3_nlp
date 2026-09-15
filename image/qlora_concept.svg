@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="310" viewBox="0 0 760 310" role="img" aria-labelledby="title desc">
+  <title id="title">QLoRA의 양자화 기반 경로와 LoRA 경로</title>
+  <desc id="desc">입력이 동결된 4비트 기반 가중치 경로와 학습 가능한 LoRA 경로를 지나 합쳐지고, 그래디언트는 LoRA 파라미터만 업데이트하는 구조</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#334155"/>
+    </marker>
+    <marker id="red-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/>
+    </marker>
+    <style>
+      .label { font: 16px sans-serif; fill: #0f172a; text-anchor: middle; }
+      .small { font: 14px sans-serif; fill: #334155; text-anchor: middle; }
+      .box { stroke-width: 2; rx: 12; }
+      .arrow { stroke: #334155; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="760" height="310" fill="#ffffff"/>
+  <text x="380" y="28" class="label" font-weight="700">QLoRA: 양자화된 기반 경로 + 학습 가능한 LoRA 경로</text>
+
+  <rect x="25" y="125" width="105" height="60" class="box" fill="#e2e8f0" stroke="#64748b"/>
+  <text x="77" y="161" class="label">입력 x</text>
+  <path d="M130 155 L205 95" class="arrow"/>
+  <path d="M130 155 L205 215" class="arrow"/>
+
+  <rect x="205" y="58" width="220" height="76" class="box" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="315" y="88" class="label">4비트 기반 가중치 W</text>
+  <text x="315" y="113" class="small">NF4로 저장 · 업데이트하지 않음</text>
+
+  <rect x="205" y="177" width="220" height="76" class="box" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="315" y="207" class="label">LoRA 행렬 A, B</text>
+  <text x="315" y="232" class="small">FP32 계산 · 학습 대상</text>
+
+  <path d="M425 96 L530 143" class="arrow"/>
+  <path d="M425 215 L530 167" class="arrow"/>
+  <circle cx="550" cy="155" r="25" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+  <text x="550" y="162" class="label" font-size="24">+</text>
+  <path d="M575 155 L635 155" class="arrow"/>
+
+  <rect x="635" y="125" width="100" height="60" class="box" fill="#ede9fe" stroke="#7c3aed"/>
+  <text x="685" y="161" class="label">출력 y</text>
+
+  <path d="M685 200 C620 285, 465 288, 350 258" stroke="#dc2626" stroke-width="2" stroke-dasharray="7 5" fill="none" marker-end="url(#red-arrow)"/>
+  <text x="540" y="292" class="small" fill="#b91c1c">loss의 그래디언트는 LoRA 파라미터만 업데이트</text>
+</svg>

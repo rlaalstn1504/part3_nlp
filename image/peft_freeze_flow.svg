@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="360" viewBox="0 0 760 360" role="img" aria-labelledby="title desc">
+  <title id="title">동결과 조정: 학습 전후 가중치 비교</title>
+  <desc id="desc">동결한 가중치는 학습 전후 0.50으로 유지됩니다. 조정하는 가중치는 옵티마이저의 업데이트에 따라 0.50에서 0.47로 바뀌는 예시입니다. 두 경우 모두 순전파에 가중치를 사용합니다.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#475569"/>
+    </marker>
+    <style>
+      text { font-family: "Noto Sans CJK KR", "Noto Sans KR", sans-serif; fill: #172033; }
+      .title { font-size: 22px; font-weight: 700; text-anchor: middle; }
+      .heading { font-size: 17px; font-weight: 700; text-anchor: middle; }
+      .label { font-size: 18px; font-weight: 700; }
+      .small { font-size: 14px; fill: #475569; }
+      .value { font-size: 27px; font-weight: 700; text-anchor: middle; }
+      .center { text-anchor: middle; }
+      .arrow { stroke: #475569; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="760" height="360" fill="#ffffff" rx="12"/>
+  <text x="380" y="38" class="title">동결과 조정은 가중치의 업데이트 여부가 다릅니다</text>
+  <text x="310" y="84" class="heading">학습 전</text>
+  <text x="615" y="84" class="heading">학습 후</text>
+
+  <rect x="24" y="100" width="712" height="92" rx="12" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="44" y="140" class="label">동결 (freeze)</text>
+  <text x="44" y="165" class="small">업데이트하지 않음</text>
+  <rect x="250" y="118" width="120" height="56" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+  <text x="310" y="155" class="value">0.50</text>
+  <path d="M390 153 H535" class="arrow"/>
+  <text x="462" y="136" class="small center">그대로 유지</text>
+  <rect x="555" y="118" width="120" height="56" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+  <text x="615" y="155" class="value">0.50</text>
+
+  <rect x="24" y="210" width="712" height="92" rx="12" fill="#fff7ed" stroke="#fed7aa"/>
+  <text x="44" y="250" class="label">조정 (tune)</text>
+  <text x="44" y="275" class="small">학습 대상으로 설정</text>
+  <rect x="250" y="228" width="120" height="56" rx="8" fill="#ffffff" stroke="#c2410c" stroke-width="2"/>
+  <text x="310" y="265" class="value">0.50</text>
+  <path d="M390 263 H535" class="arrow"/>
+  <text x="462" y="246" class="small center">학습 결과로 업데이트</text>
+  <rect x="555" y="228" width="120" height="56" rx="8" fill="#ffedd5" stroke="#c2410c" stroke-width="2"/>
+  <text x="615" y="265" class="value">0.47</text>
+
+  <text x="380" y="336" class="small center">두 경우 모두 입력을 처리하는 계산에는 가중치를 사용합니다.</text>
+</svg>

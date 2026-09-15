@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="790" viewBox="0 0 760 790" role="img" aria-labelledby="title desc">
+  <title id="title">병목 Adapter의 차원 변화: 4096에서 8로 축소한 뒤 4096으로 복원</title>
+  <desc id="desc">아래에서 위로 읽는 그림. 입력 h의 shape는 1,4096이다. 오른쪽 학습 경로는 4096,8 크기의 W_down을 곱해 1,8로 줄이고, shape를 유지하는 비선형 함수 f를 거친 뒤 8,4096 크기의 W_up을 곱해 1,4096으로 복원한다. 왼쪽 잔차 경로는 입력 h를 그대로 전달하며, 두 경로를 더한 출력도 1,4096이다. 행 벡터 표기이며 bias는 생략했다.</desc>
+  <defs>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#365b80"/>
+    </marker>
+    <style>
+      text { font-family: "Noto Sans CJK KR", "Malgun Gothic", sans-serif; fill: #172c40; }
+      .title { font-size: 24px; font-weight: 700; text-anchor: middle; }
+      .label { font-size: 20px; text-anchor: middle; }
+      .small { font-size: 17px; text-anchor: middle; }
+      .shape { font-family: "DejaVu Sans Mono", monospace; font-size: 18px; text-anchor: middle; }
+      .matrix { font-family: "DejaVu Sans Mono", monospace; font-size: 22px; text-anchor: middle; }
+      .flow { fill: none; stroke: #365b80; stroke-width: 3; marker-end: url(#arrow-blue); }
+      .vector { fill: #ffe08a; stroke: #263b4f; stroke-width: 2; }
+      .projection { fill: #f18a36; stroke: #263b4f; stroke-width: 2; }
+    </style>
+  </defs>
+  <rect width="760" height="790" fill="#ffffff"/>
+  <text x="380" y="33" class="title">병목 Adapter: 4096 → 8 → 4096</text>
+
+  <text x="430" y="70" class="label">출력 h_out</text>
+  <rect x="300" y="84" width="260" height="25" class="vector"/>
+  <text x="650" y="103" class="shape">(1, 4096)</text>
+  <path d="M 430 119 L 430 110" class="flow"/>
+
+  <path d="M 430 659 L 150 659 L 150 139 L 407 139" class="flow"/>
+  <rect x="48" y="332" width="204" height="143" rx="12" fill="#eaf2f9" stroke="#7897b4" stroke-width="1.5"/>
+  <text x="150" y="365" class="label" font-weight="700">잔차 경로</text>
+  <text x="150" y="397" class="small">입력 h를 그대로 전달</text>
+  <text x="150" y="425" class="shape">(1, 4096)</text>
+  <text x="150" y="451" class="small">학습 가중치 없음</text>
+
+  <circle cx="430" cy="139" r="20" fill="#ffffff" stroke="#365b80" stroke-width="3"/>
+  <text x="430" y="147" text-anchor="middle" font-size="31">+</text>
+  <text x="642" y="146" class="small">같은 shape끼리 더하기</text>
+
+  <path d="M 430 180 L 430 161" class="flow"/>
+  <rect x="300" y="184" width="260" height="21" class="vector"/>
+  <text x="650" y="201" class="shape">(1, 4096)</text>
+  <path d="M 430 225 L 430 209" class="flow"/>
+
+  <polygon points="280,228 580,228 482,312 378,312" class="projection"/>
+  <text x="430" y="259" class="matrix">W_up</text>
+  <text x="430" y="287" class="shape">(8, 4096)</text>
+  <text x="648" y="265" class="label">차원 복원</text>
+  <text x="648" y="293" class="small">학습 대상</text>
+  <path d="M 430 348 L 430 316" class="flow"/>
+
+  <rect x="390" y="352" width="80" height="21" class="vector"/>
+  <text x="525" y="369" class="shape">(1, 8)</text>
+  <path d="M 430 401 L 430 377" class="flow"/>
+  <rect x="335" y="405" width="190" height="42" rx="9" fill="#e6ddfa" stroke="#7757a2" stroke-width="2"/>
+  <text x="430" y="433" class="label">비선형 함수 f</text>
+  <text x="648" y="419" class="small">값은 바뀌지만</text>
+  <text x="648" y="445" class="small">shape는 유지</text>
+  <path d="M 430 477 L 430 451" class="flow"/>
+
+  <rect x="390" y="481" width="80" height="21" class="vector"/>
+  <text x="525" y="498" class="shape">(1, 8)</text>
+  <text x="325" y="498" class="small" fill="#a65013">병목</text>
+  <path d="M 430 532 L 430 506" class="flow"/>
+
+  <polygon points="378,536 482,536 580,620 280,620" class="projection"/>
+  <text x="430" y="575" class="matrix">W_down</text>
+  <text x="430" y="605" class="shape">(4096, 8)</text>
+  <text x="648" y="575" class="label">차원 축소</text>
+  <text x="648" y="603" class="small">학습 대상</text>
+  <path d="M 430 689 L 430 624" class="flow"/>
+  <circle cx="430" cy="659" r="4.5" fill="#365b80"/>
+
+  <rect x="300" y="693" width="260" height="25" class="vector"/>
+  <text x="650" y="713" class="shape">(1, 4096)</text>
+  <text x="430" y="748" class="label">입력 h</text>
+  <text x="380" y="777" class="small">아래 → 위 순서 · 행 벡터 표기 · bias 생략</text>
+</svg>
